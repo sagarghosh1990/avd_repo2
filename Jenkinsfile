@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         PYTHON = '"C:\\Users\\MONY SAGAR GHOSH\\AppData\\Local\\Programs\\Python\\Python314\\python.exe" --version'
+    }
 
     stages {
         stage('Checkout') {

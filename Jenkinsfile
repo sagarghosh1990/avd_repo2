@@ -3,7 +3,6 @@ pipeline {
 
     environment {
         PYTHON = '"C:\\Users\\MONY SAGAR GHOSH\\AppData\\Local\\Programs\\Python\\Python314\\python.exe" --version'
-    }
 
     stages {
         stage('Checkout') {
@@ -20,7 +19,7 @@ pipeline {
 
         stage('Extract') {
             steps {
-                bat "${env.PYTHON} extract_data.py "
+                bat "${env.PYTHON} extract.py"
             }
         }
     }
@@ -29,5 +28,12 @@ pipeline {
         always {
             echo 'Pipeline completed.'
         }
+       success {
+            echo 'Pipeline completed.'
+        }
+        failure {
+            echo 'Pipeline failed.'
+        }
+
     }
 }

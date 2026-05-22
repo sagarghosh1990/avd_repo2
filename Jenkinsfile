@@ -1,28 +1,21 @@
-pipeline {
-    agent any
+node {
+    def PYTHON = '"C:\\Users\\MONY SAGAR GHOSH\\AppData\\Local\\Programs\\Python\\Python314\\python.exe" --version'
 
-    environment {
-        PYTHON = '"C:\\Users\\MONY SAGAR GHOSH\\AppData\\Local\\Programs\\Python\\Python314\\python.exe" --version'
-    }
-
-    stages {
+    try {
         stage('Checkout') {
-            steps {
-                checkout scm
-            }
+            checkout scm
         }
 
-        stage('Setup Python') {
-            steps {
-                bat "${env.PYTHON}"
-            }
+        stage('show python version') {
+            bat "${PYTHON}"
         }
 
-        stage('Extract') {
-            steps {
-                bat "${env.PYTHON} extract_data.py"
-            }
-        }
+        stage('run python program') {
+                bat "${PYTHON} extract_data.py" 
+        } 
+
     }
-
-    
+     catch (err) {
+        echo "Pipeline failed: ${err}"
+    }
+}
